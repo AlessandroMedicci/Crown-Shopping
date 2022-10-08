@@ -1,3 +1,6 @@
 {
-  "cSpell.words": ["appspot", "firebaseapp", "Firestore"]
+  "cSpell.words": ["appspot", "firebaseapp", "Firestore"],
+  "activeDocumentIndicator.enabled": true,
+  "activeDocumentIndicator.opacity": 75,
+  "powermode.enabled": true
 }
