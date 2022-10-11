@@ -19,7 +19,7 @@ const CartIcon = () => {
       <ShoppingIcon>
         <ShoppingIconAct />
       </ShoppingIcon>
-      <ItemCount as="span">{cartCount}</ItemCount>
+      <ItemCount>{cartCount}</ItemCount>
     </CartIconContainer>
   );
 };
