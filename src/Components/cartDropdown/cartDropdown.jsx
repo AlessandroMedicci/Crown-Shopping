@@ -1,5 +1,9 @@
 import "./cartDropdown.styled.jsx";
-import { CartDropdownContainer, CartItems } from "./cartDropdown.styled.jsx";
+import {
+  CartDropdownContainer,
+  CartItems,
+  EmptyMessage,
+} from "./cartDropdown.styled.jsx";
 import Button from "../button/button";
 import CartItem from "../cartItem/cartItem";
 import { useContext } from "react";
@@ -13,9 +17,11 @@ const CartDropdown = () => {
   return (
     <CartDropdownContainer>
       <CartItems>
-        {cartItems.map((item) => (
-          <CartItem key={item.id} item={item} />
-        ))}
+        {cartItems.length ? (
+          cartItems.map((item) => <CartItem key={item.id} item={item} />)
+        ) : (
+          <EmptyMessage>Your cart is empty</EmptyMessage>
+        )}
       </CartItems>
       <Button onClick={navigateHandler}>Check Out</Button>
     </CartDropdownContainer>
