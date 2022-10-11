@@ -1,11 +1,10 @@
 import { useState } from "react";
 //import { UserContext } from "../../Context/userContext";
 import InputForm from "../inputForm/inputForm";
-import Button from "../button/button";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button";
 import "./signInForm.scss";
 import {
   sighInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../Utils/firebase/firebase";
 
@@ -80,7 +79,11 @@ const SignInForm = () => {
         />
         <div className="buttons-container">
           <Button type="submit">Get In</Button>
-          <Button type="button" buttonType="google" onClick={signInWithGoogle}>
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            type="button"
+            onClick={signInWithGoogle}
+          >
             Google In
           </Button>
         </div>
