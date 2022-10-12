@@ -1,8 +1,7 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import {
   onAuthStateChangeListener,
   createUserDocumentFromAuth,
-  signOutUser,
 } from "../Utils/firebase/firebase";
 /*
  * Context contains two pieces, storage that holds a data in it and a provider.
@@ -13,15 +12,41 @@ export const UserContext = createContext({
   setCurrentUser: () => null,
 });
 
+//Reducer
+
+export const USER_ACTION_TYPES = {
+  SET_CURRENT_USER: "SET_CURRENT_USER",
+};
+
+const userReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case USER_ACTION_TYPES.SET_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: payload,
+      };
+    default:
+      throw new Error(`Unhandled type: ${type} entered`);
+  }
+};
+
+const INITIAL_STATE = {
+  currentUser: null,
+};
+
 /*
  * A provider is an actual component that provides an actual value and updates it too.
  * It then wraps up all the child components.
  */
 export const UserContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  // const [currentUser, setCurrentUser] = useState(null);
+  const [{ currentUser }, dispatch] = useReducer(userReducer, INITIAL_STATE);
+  const setCurrentUser = (user) => {
+    dispatch({ type: USER_ACTION_TYPES.SET_CURRENT_USER, payload: user });
+  };
   const value = { currentUser, setCurrentUser };
-
-  //signOutUser();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangeListener((user) => {
@@ -35,3 +60,11 @@ export const UserContextProvider = ({ children }) => {
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
+
+/*
+const userReducer = (state, action) => {
+  return {
+    currentUser: 
+  }
+}
+*/
