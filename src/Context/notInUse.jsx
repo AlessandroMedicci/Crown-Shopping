@@ -1,13 +1,14 @@
+/*
 import { createContext, useEffect, useReducer } from "react";
 import {
   onAuthStateChangeListener,
   createUserDocumentFromAuth,
 } from "../Utils/firebase/firebase";
 import createAction from "../Utils/reducer/reducer.js";
-/*
+
  * Context contains two pieces, storage that holds a data in it and a provider.
  * UserContent tends to be an actual contextual value that is being accessed.
- */
+
 export const UserContext = createContext({
   currentUser: null,
   setCurrentUser: () => null,
@@ -37,10 +38,10 @@ const INITIAL_STATE = {
   currentUser: null,
 };
 
-/*
+
  * A provider is an actual component that provides an actual value and updates it too.
  * It then wraps up all the child components.
- */
+ 
 export const UserContextProvider = ({ children }) => {
   // const [currentUser, setCurrentUser] = useState(null);
   const [{ currentUser }, dispatch] = useReducer(userReducer, INITIAL_STATE);
@@ -63,7 +64,6 @@ export const UserContextProvider = ({ children }) => {
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
-/*
 const userReducer = (state, action) => {
   return {
     currentUser: 
