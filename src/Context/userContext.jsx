@@ -3,6 +3,7 @@ import {
   onAuthStateChangeListener,
   createUserDocumentFromAuth,
 } from "../Utils/firebase/firebase";
+import createAction from "../Utils/reducer/reducer.js";
 /*
  * Context contains two pieces, storage that holds a data in it and a provider.
  * UserContent tends to be an actual contextual value that is being accessed.
@@ -44,9 +45,8 @@ export const UserContextProvider = ({ children }) => {
   // const [currentUser, setCurrentUser] = useState(null);
   const [{ currentUser }, dispatch] = useReducer(userReducer, INITIAL_STATE);
   const setCurrentUser = (user) => {
-    dispatch({ type: USER_ACTION_TYPES.SET_CURRENT_USER, payload: user });
+    dispatch(createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user));
   };
-  const value = { currentUser, setCurrentUser };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangeListener((user) => {
@@ -57,6 +57,8 @@ export const UserContextProvider = ({ children }) => {
     });
     return unsubscribe;
   }, []);
+
+  const value = { currentUser };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
