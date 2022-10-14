@@ -1,36 +1,47 @@
-import "./checkoutItem.scss";
-import { useContext } from "react";
-import { CartDropdownContext } from "../../Context/cartItemContext";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  clearItemFromCart,
+  addItemToCart,
+  removeItemFromCart,
+} from "../../Store/cart/cartAction";
+import { selectCartItems } from "../../Store/cart/cartSelect";
+
+import {
+  CheckoutItemContainer,
+  ImageContainer,
+  BaseSpan,
+  Quantity,
+  Arrow,
+  Value,
+  RemoveButton,
+} from "./checkoutItem.styled";
 
 const CheckoutItem = ({ cartItem }) => {
-  const { name, imageUrl, price, qty } = cartItem;
-  const { clearItemsFromCheckout, addItemsToCart, removeItemsFromCart } =
-    useContext(CartDropdownContext);
-  const clearanceHandler = () => clearItemsFromCheckout(cartItem);
+  const { name, imageUrl, price, quantity } = cartItem;
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
 
-  const incrementHandler = () => addItemsToCart(cartItem);
-  const decrementHandler = () => removeItemsFromCart(cartItem);
+  const clearItemHandler = () =>
+    dispatch(clearItemFromCart(cartItems, cartItem));
+  const addItemHandler = () => dispatch(addItemToCart(cartItems, cartItem));
+  const removeItemHandler = () =>
+    dispatch(removeItemFromCart(cartItems, cartItem));
 
   return (
-    <div className="checkout-item-container">
-      <div className="image-container">
+    <CheckoutItemContainer>
+      <ImageContainer>
         <img src={imageUrl} alt={`${name}`} />
-      </div>
-      <span className="name">{name}</span>
-      <span className="quantity">
-        <div className="arrow" onClick={decrementHandler}>
-          &#10094;
-        </div>
-        <span className="value">{qty}</span>
-        <div className="arrow" onClick={incrementHandler}>
-          &#10095;
-        </div>
-      </span>
-      <span className="price">{price}</span>
-      <div className="remove-button" onClick={clearanceHandler}>
-        &#10005;
-      </div>
-    </div>
+      </ImageContainer>
+      <BaseSpan> {name} </BaseSpan>
+      <Quantity>
+        <Arrow onClick={removeItemHandler}>&#10094;</Arrow>
+        <Value>{quantity}</Value>
+        <Arrow onClick={addItemHandler}>&#10095;</Arrow>
+      </Quantity>
+      <BaseSpan> {price}</BaseSpan>
+      <RemoveButton onClick={clearItemHandler}>&#10005;</RemoveButton>
+    </CheckoutItemContainer>
   );
 };
 

@@ -5,19 +5,21 @@ const itemsChecker = (cartItems, itemToAdd) => {
   const existingItems = cartItems.find((item) => item.id === itemToAdd.id);
   if (existingItems) {
     return cartItems.map((item) =>
-      item.id === itemToAdd.id ? { ...item, qty: item.qty + 1 } : item
+      item.id === itemToAdd.id ? { ...item, quantity: item.quantity + 1 } : item
     );
   }
-  return [...cartItems, { ...itemToAdd, qty: 1 }];
+  return [...cartItems, { ...itemToAdd, quantity: 1 }];
 };
 
 const itemsRemover = (cartItems, itemToRemove) => {
   const existingItems = cartItems.find((item) => item.id === itemToRemove.id);
-  if (existingItems.qty === 1) {
+  if (existingItems.quantity === 1) {
     return cartItems.filter((cartItem) => cartItem.id !== itemToRemove.id);
   }
   return cartItems.map((item) =>
-    item.id === itemToRemove.id ? { ...item, qty: item.qty - 1 } : item
+    item.id === itemToRemove.id
+      ? { ...item, quantity: item.quantity - 1 }
+      : item
   );
 };
 
@@ -67,7 +69,7 @@ const cartReducer = (state, action) => {
 };
 
 export const CartDropdownContextProvider = ({ children }) => {
-  const [isOpened, setIsOpened] = useState(false);
+  //const [isOpened, setIsOpened] = useState(false);
   /*
   
   const [cartItems, setCartItems] = useState([]);
@@ -98,12 +100,12 @@ export const CartDropdownContextProvider = ({ children }) => {
 
   const updateCartItemsReducer = (newCartItems) => {
     const newCartCount = newCartItems.reduce(
-      (total, cartItem) => total + cartItem.qty,
+      (total, cartItem) => total + cartItem.quantity,
       0
     );
 
     const totalPriceCount = newCartItems.reduce(
-      (total, cartItem) => total + cartItem.price * cartItem.qty,
+      (total, cartItem) => total + cartItem.price * cartItem.quantity,
       0
     );
 
