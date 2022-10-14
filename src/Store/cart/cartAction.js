@@ -27,17 +27,17 @@ const itemsClearance = (cartItems, itemToClear) =>
 export const setIsOpened = (boolean) =>
   createAction(CART_ACTION_TYPES.setIsOpened, boolean);
 
-const addItemsToCart = (itemToAdd) => {
+export const addItemsToCart = (cartItems, itemToAdd) => {
   const newCartItems = itemsChecker(cartItems, itemToAdd);
-  updateCartItemsReducer(newCartItems);
+  return createAction(CART_ACTION_TYPES.setCartItems, newCartItems);
 };
 
-const removeItemsFromCart = (itemToRemove) => {
+export const removeItemsFromCart = (cartItems, itemToRemove) => {
   const newCartItems = itemsRemover(cartItems, itemToRemove);
-  updateCartItemsReducer(newCartItems);
+  return createAction(CART_ACTION_TYPES.setCartItems, newCartItems);
 };
 
-const clearItemsFromCheckout = (itemToClear) => {
+export const clearItemsFromCheckout = (cartItems, itemToClear) => {
   const newCartItems = itemsClearance(cartItems, itemToClear);
-  updateCartItemsReducer(newCartItems);
+  return createAction(CART_ACTION_TYPES.setCartItems, newCartItems);
 };
