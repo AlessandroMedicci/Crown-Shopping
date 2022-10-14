@@ -13,7 +13,7 @@ import { signOutUser } from "../../Utils/firebase/firebase";
 import CartIcon from "../../Components/cartIcon/cartIcon";
 import CartDropdown from "../../Components/cartDropdown/cartDropdown";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../Store/user/userSelector.js";
+import { selectCurrentUser } from "../../Store/user/userSelector";
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);

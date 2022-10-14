@@ -67,8 +67,9 @@ const cartReducer = (state, action) => {
 };
 
 export const CartDropdownContextProvider = ({ children }) => {
-  /*
   const [isOpened, setIsOpened] = useState(false);
+  /*
+  
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
