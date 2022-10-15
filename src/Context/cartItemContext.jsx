@@ -69,30 +69,6 @@ const cartReducer = (state, action) => {
 };
 
 export const CartDropdownContextProvider = ({ children }) => {
-  //const [isOpened, setIsOpened] = useState(false);
-  /*
-  
-  const [cartItems, setCartItems] = useState([]);
-  const [cartCount, setCartCount] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  useEffect(() => {
-    const newCartCount = cartItems.reduce(
-      (total, cartItem) => total + cartItem.qty,
-      0
-    );
-    setCartCount(newCartCount);
-  }, [cartItems]);
-
-  useEffect(() => {
-    const totalPriceCount = cartItems.reduce(
-      (total, cartItem) => total + cartItem.price * cartItem.qty,
-      0
-    );
-    setTotalPrice(totalPriceCount);
-  }, [cartItems]);
-  */
-
   const [{ isOpened, cartItems, cartCount, totalPrice }, dispatch] = useReducer(
     cartReducer,
     INITIAL_STATE

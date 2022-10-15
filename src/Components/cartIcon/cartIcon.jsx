@@ -14,11 +14,8 @@ import { setIsCartOpen } from "../../Store/cart/cartAction.js";
 
 const CartIcon = () => {
   const dispatch = useDispatch();
-
   const cartCount = useSelector(selectCartCount);
-
   const isCartOpen = useSelector(selectIsCartOpen);
-
   const cartToggle = () => dispatch(setIsCartOpen(!isCartOpen));
 
   return (

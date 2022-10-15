@@ -5,5 +5,10 @@
   "powermode.enabled": true,
   "workbench.colorCustomizations": {
     "tab.activeBorder": "#ff3333"
+<<<<<<< HEAD
   }
+=======
+  },
+  "peacock.affectSashHover": false
+>>>>>>> Refctoring
 }
