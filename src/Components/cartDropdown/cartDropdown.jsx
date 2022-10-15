@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import { selectCartItems } from "../../Store/cart/cartSelect";
 import Button from "../button/button";
 import CartItem from "../cartItem/cartItem";
