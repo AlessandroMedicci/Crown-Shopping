@@ -9,23 +9,10 @@ import logger from "redux-logger";
 import { rootReducer } from "./rootReducer";
 import thunk from "redux-thunk";
 
-const persistConfig = {
-  key: "root",
-  storage,
-  blacklist: ["user"],
-};
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-const middleWares = [process.env.NODE_ENV === "development" && logger, thunk].filter(
-  Boolean
-);
-
-const thunkMiddleWare = (store) => (next) => (action) {
-  if (typeof (action) === 'function' ) {
-    action(dispatch)
-  }
-}
+const middleWares = [
+  process.env.NODE_ENV === "development" && logger,
+  thunk,
+].filter(Boolean);
 
 const composeEnhancer =
   (process.env.NODE_ENV !== "production" &&
@@ -33,7 +20,13 @@ const composeEnhancer =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
 
+const persistConfig = {
+  key: "root",
+  storage,
+  blacklist: ["user"],
+};
 
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
