@@ -4,11 +4,11 @@
   "activeDocumentIndicator.opacity": 75,
   "powermode.enabled": true,
   "workbench.colorCustomizations": {
-    "tab.activeBorder": "#ff3333"
-<<<<<<< HEAD
+    "tab.activeBorder": "#aa0000"
+    "tab.activeBackground": "#aa0000"
+    "tab.activeBorderTop": "#aa0000"
+    "editor.selectionBackground": "#aa0000"
   }
-=======
-  },
-  "peacock.affectSashHover": false
->>>>>>> Refctoring
+  
+
 }
