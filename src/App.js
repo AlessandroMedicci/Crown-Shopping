@@ -7,19 +7,13 @@ import Shop from "./Routes/shopping/shopping";
 import Checkout from "./Routes/checkout/checkout";
 
 import { useEffect } from "react";
-import {
-  onAuthStateChangeListener,
-  createUserDocumentFromAuth,
-  getCurrentUser,
-} from "./Utils/firebase/firebase";
-
-import { setCurrentUser } from "./Store/user/userAction";
+import { checkUserSession } from "./Store/user/userAction";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getCurrentUser();
+    dispatch(checkUserSession());
   }, []);
 
   return (

@@ -92,7 +92,7 @@ export const createUserDocumentFromAuth = async (
     } catch (error) {
       console.log("Error created on setDoc stage", error.message);
     }
-    return userDocRef;
+    return userSnapshot;
   }
 };
 
