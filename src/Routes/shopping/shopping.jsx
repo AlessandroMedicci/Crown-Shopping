@@ -4,13 +4,13 @@ import CollectionPreview from "../collectionPreview/collectionPreview";
 import Category from "../category/category";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchCategoriesThunk } from "../../Store/categories/categoryAction";
+import { fetchCategoriesStart } from "../../Store/categories/categoryAction";
 
 const Shop = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCategoriesThunk());
+    dispatch(fetchCategoriesStart());
   }, []);
 
   return (
