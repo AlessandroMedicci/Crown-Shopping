@@ -1,18 +1,10 @@
-import CartDropdown from "../../Components/cartDropdown/cartDropdown";
 import createAction from "../../Utils/reducer/reducer";
 import { USER_ACTION_TYPES } from "./userTypes";
 
 export const setCurrentUser = (user) =>
   createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user);
 
-/*
-  CHECK_USER_SESSION: 'user/CHECK_USER_SESSION',
-  GOOGLE_SIGNIN_START: 'user/GOOGLE_SIGNIN_START',
-  EMAIL_SIGNIN_START: 'user/EMAIL_SIGNIN_START',
-  SIGNIN_SUCCEEDED: 'user/SIGNIN_SUCCEEDED',
-  SIGNIN_FAILED: 'user/SIGNIN_FAILED',
-*/
-
+  
 export const checkUserSession = () =>
   createAction(USER_ACTION_TYPES.CHECK_USER_SESSION);
 
@@ -43,3 +35,9 @@ export const signupSucceeded = (user, additionalInformation) =>
 
 export const signupFailed = (error) =>
   createAction(USER_ACTION_TYPES.SIGNUP_FAILED, error);
+
+export const signoutStart = () => createAction(USER_ACTION_TYPES.SIGNOUT_START);
+
+export const signoutSucceeded = () => createAction(USER_ACTION_TYPES.SIGNOUT_SUCCEEDED);
+
+export const signoutFailed = (error) => createAction(USER_ACTION_TYPES.SIGNOUT_FAILED);

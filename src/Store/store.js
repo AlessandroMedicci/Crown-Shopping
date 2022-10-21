@@ -7,14 +7,13 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
 import { rootReducer } from "./rootReducer";
-import thunk from "redux-thunk";
 import createSagaMiddleware from "@redux-saga/core";
 import { rootSaga } from "./rootSaga";
 
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user"],
+  whitelist: ["cart"],
 };
 
 const sagaMiddleWare = createSagaMiddleware();
