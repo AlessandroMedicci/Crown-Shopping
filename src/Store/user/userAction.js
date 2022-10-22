@@ -40,4 +40,4 @@ export const signoutStart = () => createAction(USER_ACTION_TYPES.SIGNOUT_START);
 
 export const signoutSucceeded = () => createAction(USER_ACTION_TYPES.SIGNOUT_SUCCEEDED);
 
-export const signoutFailed = (error) => createAction(USER_ACTION_TYPES.SIGNOUT_FAILED);
+export const signoutFailed = (error) => createAction(USER_ACTION_TYPES.SIGNOUT_FAILED, error);

@@ -92,8 +92,8 @@ export const createUserDocumentFromAuth = async (
     } catch (error) {
       console.log("Error created on setDoc stage", error.message);
     }
-    return userSnapshot;
   }
+  return userSnapshot;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {

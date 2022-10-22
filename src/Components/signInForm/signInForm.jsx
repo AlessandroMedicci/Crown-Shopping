@@ -33,16 +33,7 @@ const SignInForm = () => {
       dispatch(emailSigninStart(email, password));
       resetFormFields();
     } catch (error) {
-      switch (error.code) {
-        case "auth/wrong-password":
-          alert("Incorrect password for email");
-          break;
-        case "auth/user-not-found":
-          alert("No user found with an email indicated");
-          break;
-        default:
-          console.log(error);
-      }
+      console.log(error);
     }
   };
 
