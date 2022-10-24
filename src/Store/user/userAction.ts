@@ -44,7 +44,7 @@ export type SignUpFailed = ActionWithPayload<
 
 export type SignOutStart = Action<USER_ACTION_TYPES.SIGNOUT_START>;
 
-export type SignOutSuccess = Action<USER_ACTION_TYPES.SIGNOUT_SUCCEEDED>;
+export type SignOutSucceeded = Action<USER_ACTION_TYPES.SIGNOUT_SUCCEEDED>;
 
 export type SignOutFailed = ActionWithPayload<
   USER_ACTION_TYPES.SIGNOUT_FAILED,
@@ -64,7 +64,7 @@ export const emailSignInStart = withMatcher(
     createAction(USER_ACTION_TYPES.EMAIL_SIGNIN_START, { email, password })
 );
 
-export const signInSuccess = withMatcher(
+export const signInSucceeded = withMatcher(
   (user: UserData): SignInSucceeded =>
     createAction(USER_ACTION_TYPES.SIGNIN_SUCCEEDED, user)
 );
@@ -83,7 +83,7 @@ export const signUpStart = withMatcher(
     })
 );
 
-export const signUpSuccess = withMatcher(
+export const signUpSucceeded = withMatcher(
   (user: User, additionalInformation: AdditionalInformation): SignUpSucceeded =>
     createAction(USER_ACTION_TYPES.SIGNUP_SUCCEEDED, {
       user,
@@ -100,8 +100,8 @@ export const signOutStart = withMatcher(
   (): SignOutStart => createAction(USER_ACTION_TYPES.SIGNOUT_START)
 );
 
-export const signOutSuccess = withMatcher(
-  (): SignOutSuccess => createAction(USER_ACTION_TYPES.SIGNOUT_SUCCEEDED)
+export const signOutSucceeded = withMatcher(
+  (): SignOutSucceeded => createAction(USER_ACTION_TYPES.SIGNOUT_SUCCEEDED)
 );
 
 export const signOutFailed = withMatcher(
