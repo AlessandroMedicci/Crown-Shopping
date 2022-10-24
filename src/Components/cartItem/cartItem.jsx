@@ -1,4 +1,3 @@
-import "./cartItem.styled";
 import {
   CartItemContainer,
   Image,

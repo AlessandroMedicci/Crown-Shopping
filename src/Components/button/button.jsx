@@ -1,5 +1,3 @@
-import "./button.styled.jsx";
-
 import {
   BaseButton,
   GoogleSignInButton,

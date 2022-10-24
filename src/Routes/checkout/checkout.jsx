@@ -1,9 +1,6 @@
 import { useSelector } from "react-redux";
 
-import {
-  selectCartItems,
-  selectCartTotal,
-} from "../../Store/cart/cartSelect.js";
+import { selectCartItems, selectCartTotal } from "../../Store/cart/cartSelect";
 
 import CheckoutItem from "../../Components/checkoutItem/checkoutItem";
 

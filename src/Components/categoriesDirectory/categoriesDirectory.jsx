@@ -1,4 +1,3 @@
-import "./categoriesDirectory.styled.jsx";
 import { DirectoryContainer } from "./categoriesDirectory.styled.jsx";
 import DirectoryItem from "../directoryItem/directoryItem";
 

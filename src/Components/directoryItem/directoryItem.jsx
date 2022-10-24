@@ -1,9 +1,8 @@
-import "./directoryItem.styled.jsx";
 import {
   BackgroundImage,
   Body,
   DirectoryItemContainer,
-} from "./directoryItem.styled.jsx";
+} from "./directoryItem.styled";
 import { useNavigate } from "react-router-dom";
 
 const DirectoryItem = ({ category }) => {

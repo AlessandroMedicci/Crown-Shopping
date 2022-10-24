@@ -1,5 +1,4 @@
-import "./inputForm.styled.jsx";
-import { FormInputLabel, Input, Group } from "./inputForm.styled.jsx";
+import { FormInputLabel, Input, Group } from "./inputForm.styled";
 
 const InputForm = ({ label, ...otherProps }) => {
   return (
