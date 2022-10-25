@@ -11,7 +11,7 @@ import {
   Total,
 } from "./checkout.styled";
 
-import PaymentForm from "../../Components/paymentForm/paymentForm.jsx";
+import PaymentForm from "../../Components/paymentForm/paymentForm";
 
 const Checkout = () => {
   const cartItems = useSelector(selectCartItems);
