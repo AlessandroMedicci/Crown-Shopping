@@ -10,43 +10,43 @@ import { User } from "firebase/auth";
 
 export type CheckUserSession = Action<USER_ACTION_TYPES.CHECK_USER_SESSION>;
 
-export type GoogleSignInStart = Action<USER_ACTION_TYPES.GOOGLE_SIGNIN_START>;
+export type GoogleSigninStart = Action<USER_ACTION_TYPES.GOOGLE_SIGNIN_START>;
 
-export type EmailSignInStart = ActionWithPayload<
+export type EmailSigninStart = ActionWithPayload<
   USER_ACTION_TYPES.EMAIL_SIGNIN_START,
   { email: string; password: string }
 >;
 
-export type SignInSucceeded = ActionWithPayload<
+export type SigninSucceeded = ActionWithPayload<
   USER_ACTION_TYPES.SIGNIN_SUCCEEDED,
   UserData
 >;
 
-export type SignInFailed = ActionWithPayload<
+export type SigninFailed = ActionWithPayload<
   USER_ACTION_TYPES.SIGNIN_FAILED,
   Error
 >;
 
-export type SignUpStart = ActionWithPayload<
+export type SignupStart = ActionWithPayload<
   USER_ACTION_TYPES.SIGNUP_START,
   { email: string }
 >;
 
-export type SignUpSucceeded = ActionWithPayload<
+export type SignupSucceeded = ActionWithPayload<
   USER_ACTION_TYPES.SIGNUP_SUCCEEDED,
   { user: User; additionalInformation: AdditionalInformation }
 >;
 
-export type SignUpFailed = ActionWithPayload<
+export type SignupFailed = ActionWithPayload<
   USER_ACTION_TYPES.SIGNUP_FAILED,
   Error
 >;
 
-export type SignOutStart = Action<USER_ACTION_TYPES.SIGNOUT_START>;
+export type SignoutStart = Action<USER_ACTION_TYPES.SIGNOUT_START>;
 
-export type SignOutSucceeded = Action<USER_ACTION_TYPES.SIGNOUT_SUCCEEDED>;
+export type SignoutSucceeded = Action<USER_ACTION_TYPES.SIGNOUT_SUCCEEDED>;
 
-export type SignOutFailed = ActionWithPayload<
+export type SignoutFailed = ActionWithPayload<
   USER_ACTION_TYPES.SIGNOUT_FAILED,
   Error
 >;
@@ -55,27 +55,27 @@ export const checkUserSession = withMatcher(
   (): CheckUserSession => createAction(USER_ACTION_TYPES.CHECK_USER_SESSION)
 );
 
-export const googleSignInStart = withMatcher(
-  (): GoogleSignInStart => createAction(USER_ACTION_TYPES.GOOGLE_SIGNIN_START)
+export const googleSigninStart = withMatcher(
+  (): GoogleSigninStart => createAction(USER_ACTION_TYPES.GOOGLE_SIGNIN_START)
 );
 
-export const emailSignInStart = withMatcher(
-  (email: string, password: string): EmailSignInStart =>
+export const emailSigninStart = withMatcher(
+  (email: string, password: string): EmailSigninStart =>
     createAction(USER_ACTION_TYPES.EMAIL_SIGNIN_START, { email, password })
 );
 
-export const signInSucceeded = withMatcher(
-  (user: UserData): SignInSucceeded =>
+export const signinSucceeded = withMatcher(
+  (user: UserData): SigninSucceeded =>
     createAction(USER_ACTION_TYPES.SIGNIN_SUCCEEDED, user)
 );
 
-export const signInFailed = withMatcher(
-  (error: Error): SignInFailed =>
+export const signinFailed = withMatcher(
+  (error: Error): SigninFailed =>
     createAction(USER_ACTION_TYPES.SIGNIN_FAILED, error)
 );
 
-export const signUpStart = withMatcher(
-  (email: string, password: string, displayName: string): SignUpStart =>
+export const signupStart = withMatcher(
+  (email: string, password: string, displayName: string): SignupStart =>
     createAction(USER_ACTION_TYPES.SIGNUP_START, {
       email,
       password,
@@ -83,28 +83,28 @@ export const signUpStart = withMatcher(
     })
 );
 
-export const signUpSucceeded = withMatcher(
-  (user: User, additionalInformation: AdditionalInformation): SignUpSucceeded =>
+export const signupSucceeded = withMatcher(
+  (user: User, additionalInformation: AdditionalInformation): SignupSucceeded =>
     createAction(USER_ACTION_TYPES.SIGNUP_SUCCEEDED, {
       user,
       additionalInformation,
     })
 );
 
-export const signUpFailed = withMatcher(
-  (error: Error): SignUpFailed =>
+export const signupFailed = withMatcher(
+  (error: Error): SignupFailed =>
     createAction(USER_ACTION_TYPES.SIGNUP_FAILED, error)
 );
 
-export const signOutStart = withMatcher(
-  (): SignOutStart => createAction(USER_ACTION_TYPES.SIGNOUT_START)
+export const signoutStart = withMatcher(
+  (): SignoutStart => createAction(USER_ACTION_TYPES.SIGNOUT_START)
 );
 
-export const signOutSucceeded = withMatcher(
-  (): SignOutSucceeded => createAction(USER_ACTION_TYPES.SIGNOUT_SUCCEEDED)
+export const signoutSucceeded = withMatcher(
+  (): SignoutSucceeded => createAction(USER_ACTION_TYPES.SIGNOUT_SUCCEEDED)
 );
 
-export const signOutFailed = withMatcher(
-  (error: Error): SignOutFailed =>
+export const signoutFailed = withMatcher(
+  (error: Error): SignoutFailed =>
     createAction(USER_ACTION_TYPES.SIGNOUT_FAILED, error)
 );
