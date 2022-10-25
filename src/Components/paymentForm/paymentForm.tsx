@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
 import { FormContainer } from "./paymentForm.styled";
@@ -6,6 +6,11 @@ import { selectCurrentUser } from "../../Store/user/userSelector";
 import { selectCartTotal } from "../../Store/cart/cartSelect";
 import { BUTTON_TYPE_CLASSES } from "../button/button";
 import { PaymentButton, PaymentFormContainer } from "./paymentForm.styled";
+import { StripeCardElement } from "@stripe/stripe-js";
+
+const ifValidCardElement = (
+  card: StripeCardElement | null
+): card is StripeCardElement => card !== null;
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -14,30 +19,34 @@ const PaymentForm = () => {
   const currentUser = useSelector(selectCurrentUser);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
-  const paymentHandler = async (e) => {
+  const paymentHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (!stripe || !elements) {
       return;
     }
+
     setIsProcessingPayment(true);
-    const response = await fetch(
-      "/.netlify/functions/create-payment-intent.js",
-      {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ amount: amount * 100 }),
-      }
-    ).then((res) => {
-      return res.json();
-    });
 
-    const clientSecret = response.paymentIntent.client_secret;
+    const response = await fetch("/.netlify/functions/create-payment-intent", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ amount: amount * 100 }),
+    }).then((res) => res.json());
 
-    const paymentResult = await stripe.confirmCardPayment(clientSecret, {
+    const {
+      paymentIntent: { client_secret },
+    } = response;
+
+    const cardDetails = elements.getElement(CardElement);
+
+    if (!ifValidCardElement(cardDetails)) return;
+
+    const paymentResult = await stripe.confirmCardPayment(client_secret, {
       payment_method: {
-        card: elements.getElement(CardElement),
+        card: cardDetails,
         billing_details: {
           name: currentUser ? currentUser.displayName : "Alessandro",
         },
