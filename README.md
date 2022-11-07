@@ -6,11 +6,17 @@ The following React-TypeScript Project is considered to be an e-commerce applica
 👀 The APP has all the following features: 
 
 ✔ Signing up / Authentication features using the Firebase /auth Baas.
+
 ✔ All the data regarding User Auth info and product categories are provided on Firebase /database Baas.
+
 ✔ For routing I used React Router. 
+
 ✔ For state management I use Redux. 
+
 ✔ For data fetching and any async behavior I use Redux-Saga. 
+
 ✔ For online payment I use Stripe SaaS.
+
 ✔ 55% of code is written using TypeScript.
 
 
